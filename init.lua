@@ -4,30 +4,95 @@ vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.guicursor = ""
 vim.opt.cursorline = true
+
 vim.opt.expandtab = true
 vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
 vim.opt.smartindent = true
+
+
 vim.opt.clipboard = "unnamedplus"
 vim.opt.undofile = true
 
 vim.cmd [[packadd packer.nvim]]
 
 require('packer').startup(function(use)
-        use {"windwp/nvim-autopairs", as = 'nvim-autopair'} 
-        use { 'wbthomason/packer.nvim'}
-        use { 'rose-pine/neovim', as = 'rose-pine' }
-        use 'nvim-treesitter/nvim-treesitter' 
-        use 'unblevable/quick-scope'
-        use {'nvim-telescope/telescope.nvim', tag = '0.1.3', requires = { {'nvim-lua/plenary.nvim'} } }
-        use 'neovim/nvim-lspconfig'
+    use {"windwp/nvim-autopairs", as = 'nvim-autopair'} 
+    use { 'wbthomason/packer.nvim'}
+    use { 'rose-pine/neovim', as = 'rose-pine' }
+    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} 
+    use 'unblevable/quick-scope'
+    use {'nvim-telescope/telescope.nvim', tag = '0.1.3', requires = { {'nvim-lua/plenary.nvim'} } }
+    use 'neovim/nvim-lspconfig'
+    use { 'williamboman/mason.nvim'}
+    use { 'williamboman/mason-lspconfig.nvim', requires = { 'williamboman/mason.nvim', 'neovim/nvim-lspconfig' } }
 
-        -- Autocomplete
-        use 'hrsh7th/nvim-cmp'
-        use 'hrsh7th/cmp-nvim-lsp'
-        -- Snippets
-        use 'L3MON4D3/LuaSnip'
+    -- Autocomplete
+    use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-nvim-lsp'
+    -- Custumization
+    use {
+        'onsails/lspkind-nvim',
+        config = function()
+            require('lspkind').init({
+                mode = 'symbol_text', -- Adiciona texto junto com o símbolo
+                preset = 'default',
+            })
+        end
+    }
+    use({
+        'rose-pine/neovim',
+        as = 'rose-pine',
+        config = function()
+            require('rose-pine').setup({
+                variant = 'moon', -- 'main', 'moon', ou 'dawn'
+                disable_background = false,
+            })
+            vim.cmd('colorscheme rose-pine')
+        end
+    })
+    use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
+    -- Snippets
+    use 'L3MON4D3/LuaSnip'
 end)
 
+-- Mason config
+require('mason').setup()
+require('mason-lspconfig').setup({
+    ensure_installed = { 'lua_ls','rust_analyzer' }, -- Nome do servidor Lua
+})
+-- MasonLsp config
+require("mason").setup({
+    ui = {
+        border = "rounded", -- Bordas arredondadas pro visual
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+
+
+-- Lualine config
+require('lualine').setup({
+    options = {
+        theme = 'rose-pine', -- Usa o tema que tu tá usando (ou troca por outro)
+        section_separators = { left = '', right = '' },
+        component_separators = { left = '', right = '' },
+        icons_enabled = true,
+    },
+    sections = {
+        lualine_a = { 'mode' }, -- Modo atual (normal, insert, etc.)
+        lualine_c = { 'filename' }, -- Nome do arquivo
+        lualine_x = { 'filetype' }, -- Infos de arquivo
+        lualine_z = { 'location' }, -- Linha e coluna
+    },
+})
 
 -- Autopairs config
 local npairs = require("nvim-autopairs")
@@ -45,13 +110,6 @@ require('nvim-treesitter.configs').setup({
 })
 
 
--- Rose pine config
-require('rose-pine').setup({
-        disable_background = true,
-        disable_float_background = true,
-        variant = 'moon'
-})
-vim.cmd('colorscheme rose-pine')
 
 
 -- QuickScope config
@@ -132,6 +190,8 @@ lspconfig.rust_analyzer.setup({
 
 -- Autocomplete config
 local cmp = require('cmp')
+local lspkind = require('lspkind')
+
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -145,6 +205,21 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
     }),
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
+    formatting = {
+        fields = { 'abbr', 'kind', 'menu' },
+        format = function(entry, vim_item)
+            vim_item.menu = ({
+                buffer = '[BUF]',
+                nvim_lsp = '[LSP]',
+                path = '[PATH]',
+            })[entry.source.name]
+            return vim_item
+        end,
+    },
 })
 
 -- keymaps

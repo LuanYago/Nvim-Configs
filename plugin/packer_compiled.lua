@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/ycs/.cache/nvim/packer_hererocks/2.1.1731601260/share/lua/5.1/?.lua;/home/ycs/.cache/nvim/packer_hererocks/2.1.1731601260/share/lua/5.1/?/init.lua;/home/ycs/.cache/nvim/packer_hererocks/2.1.1731601260/lib/luarocks/rocks-5.1/?.lua;/home/ycs/.cache/nvim/packer_hererocks/2.1.1731601260/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/ycs/.cache/nvim/packer_hererocks/2.1.1731601260/lib/lua/5.1/?.so"
+local package_path_str = "/home/luan/.cache/nvim/packer_hererocks/2.1.1731601260/share/lua/5.1/?.lua;/home/luan/.cache/nvim/packer_hererocks/2.1.1731601260/share/lua/5.1/?/init.lua;/home/luan/.cache/nvim/packer_hererocks/2.1.1731601260/lib/luarocks/rocks-5.1/?.lua;/home/luan/.cache/nvim/packer_hererocks/2.1.1731601260/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/luan/.cache/nvim/packer_hererocks/2.1.1731601260/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -76,62 +76,93 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   LuaSnip = {
     loaded = true,
-    path = "/home/ycs/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    path = "/home/luan/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ["cmp-nvim-lsp"] = {
     loaded = true,
-    path = "/home/ycs/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    path = "/home/luan/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["lspkind-nvim"] = {
+    config = { "\27LJ\2\n[\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\tmode\16symbol_text\vpreset\fdefault\tinit\flspkind\frequire\0" },
+    loaded = true,
+    path = "/home/luan/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
+    url = "https://github.com/onsails/lspkind-nvim"
+  },
+  ["lualine.nvim"] = {
+    loaded = true,
+    path = "/home/luan/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
+  ["mason-lspconfig.nvim"] = {
+    loaded = true,
+    path = "/home/luan/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
+    url = "https://github.com/williamboman/mason-lspconfig.nvim"
+  },
+  ["mason.nvim"] = {
+    loaded = true,
+    path = "/home/luan/.local/share/nvim/site/pack/packer/start/mason.nvim",
+    url = "https://github.com/williamboman/mason.nvim"
   },
   ["nvim-autopair"] = {
     loaded = true,
-    path = "/home/ycs/.local/share/nvim/site/pack/packer/start/nvim-autopair",
+    path = "/home/luan/.local/share/nvim/site/pack/packer/start/nvim-autopair",
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
     loaded = true,
-    path = "/home/ycs/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    path = "/home/luan/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/home/ycs/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    path = "/home/luan/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/home/ycs/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    path = "/home/luan/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
+  ["nvim-web-devicons"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/luan/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
+    url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/home/ycs/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    path = "/home/luan/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/home/ycs/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    path = "/home/luan/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["quick-scope"] = {
     loaded = true,
-    path = "/home/ycs/.local/share/nvim/site/pack/packer/start/quick-scope",
+    path = "/home/luan/.local/share/nvim/site/pack/packer/start/quick-scope",
     url = "https://github.com/unblevable/quick-scope"
   },
   ["rose-pine"] = {
     loaded = true,
-    path = "/home/ycs/.local/share/nvim/site/pack/packer/start/rose-pine",
+    path = "/home/luan/.local/share/nvim/site/pack/packer/start/rose-pine",
     url = "https://github.com/rose-pine/neovim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/home/ycs/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    path = "/home/luan/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: lspkind-nvim
+time([[Config for lspkind-nvim]], true)
+try_loadstring("\27LJ\2\n[\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\tmode\16symbol_text\vpreset\fdefault\tinit\flspkind\frequire\0", "config", "lspkind-nvim")
+time([[Config for lspkind-nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
