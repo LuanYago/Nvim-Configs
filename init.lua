@@ -20,7 +20,6 @@ vim.cmd [[packadd packer.nvim]]
 require('packer').startup(function(use)
     use {"windwp/nvim-autopairs", as = 'nvim-autopair'} 
     use { 'wbthomason/packer.nvim'}
-    use { 'rose-pine/neovim', as = 'rose-pine' }
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} 
     use 'unblevable/quick-scope'
     use {'nvim-telescope/telescope.nvim', tag = '0.1.3', requires = { {'nvim-lua/plenary.nvim'} } }
@@ -31,7 +30,7 @@ require('packer').startup(function(use)
     -- Autocomplete
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-nvim-lsp'
-    -- Custumization
+    -- Costumization
     use {
         'onsails/lspkind-nvim',
         config = function()
@@ -47,9 +46,14 @@ require('packer').startup(function(use)
         config = function()
             require('rose-pine').setup({
                 variant = 'moon', -- 'main', 'moon', ou 'dawn'
-                disable_background = false,
+                disable_background = true,
+                styles = {
+                    bold = true,
+                    italic = false,
+                    transparency = true,
+                },
             })
-            vim.cmd('colorscheme rose-pine')
+            vim.cmd('colorscheme rose-pine-moon')
         end
     })
     use {
@@ -60,10 +64,11 @@ require('packer').startup(function(use)
     use 'L3MON4D3/LuaSnip'
 end)
 
+
 -- Mason config
 require('mason').setup()
 require('mason-lspconfig').setup({
-    ensure_installed = { 'lua_ls','rust_analyzer' }, -- Nome do servidor Lua
+    ensure_installed = { 'lua_ls','rust_analyzer','intelephense','jdtls' }, -- Nome do servidor Lua
 })
 -- MasonLsp config
 require("mason").setup({
@@ -104,12 +109,10 @@ cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 -- Treesitter config
 require('nvim-treesitter.configs').setup({
-        ensure_installed = { "lua", "javascript", "html", "css", "rust" }, -- Adicione suas linguagens
+        ensure_installed = { "lua","java", "javascript", "html", "css", "rust","php" }, -- Adicione suas linguagens
         highlight = { enable = true }, -- Ativa destaque de sintaxe
         indent = { enable = true }     -- Ativa indentação baseada em sintaxe
 })
-
-
 
 
 -- QuickScope config

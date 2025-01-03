@@ -147,6 +147,7 @@ _G.packer_plugins = {
     url = "https://github.com/unblevable/quick-scope"
   },
   ["rose-pine"] = {
+    config = { "\27LJ\2\n»\1\0\0\4\0\t\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\0016\0\6\0009\0\a\0'\2\b\0B\0\2\1K\0\1\0\31colorscheme rose-pine-moon\bcmd\bvim\vstyles\1\0\3\tbold\2\17transparency\2\vitalic\2\1\0\3\fvariant\tmoon\vstyles\0\23disable_background\2\nsetup\14rose-pine\frequire\0" },
     loaded = true,
     path = "/home/luan/.local/share/nvim/site/pack/packer/start/rose-pine",
     url = "https://github.com/rose-pine/neovim"
@@ -155,10 +156,19 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/luan/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["vscode-sftp.nvim"] = {
+    loaded = true,
+    path = "/home/luan/.local/share/nvim/site/pack/packer/start/vscode-sftp.nvim",
+    url = "https://github.com/lucat1/vscode-sftp.nvim"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: rose-pine
+time([[Config for rose-pine]], true)
+try_loadstring("\27LJ\2\n»\1\0\0\4\0\t\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\0016\0\6\0009\0\a\0'\2\b\0B\0\2\1K\0\1\0\31colorscheme rose-pine-moon\bcmd\bvim\vstyles\1\0\3\tbold\2\17transparency\2\vitalic\2\1\0\3\fvariant\tmoon\vstyles\0\23disable_background\2\nsetup\14rose-pine\frequire\0", "config", "rose-pine")
+time([[Config for rose-pine]], false)
 -- Config for: lspkind-nvim
 time([[Config for lspkind-nvim]], true)
 try_loadstring("\27LJ\2\n[\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\tmode\16symbol_text\vpreset\fdefault\tinit\flspkind\frequire\0", "config", "lspkind-nvim")
